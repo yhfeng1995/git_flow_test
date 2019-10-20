@@ -8,7 +8,7 @@ git是大家比较熟悉的版本控制工具, 但是至少我很长一段时间
 
 ## 0.2 更新记录
 
-
+- 0.1.0 (2019/10/20): 创建readme
 
 # 1. git flow 定义
 
@@ -155,3 +155,49 @@ git push origin develop
 ```sh
 git flow feature finish introduction
 ```
+
+![](misc/git_flow_feature_finish.png)
+
+## 2.6 发布
+
+如果develop上功能开发的差不多了, 准备需要合并到master进行发布了, 这时候需要开一个release分支, 进行发布最后的准备工作:
+
+```sh
+git flow release start 0.1.0
+```
+
+![](misc/git_flow_release_start.png)
+
+这里面可以做一些修改, 比如更新版本号, 修改BUG之类的. 修改完成之后, 如果origin库不是主仓库, 理论上可以向主仓库发出pull request申请, 但我没有看到有教程这么做的, 现在最好还是只向develop合并, 最后, 从develop向master合并由主仓库的维护者来进行, 在本地的release分支执修改完成后执行:
+
+```sh
+git flow release finish 0.1.0
+```
+
+这个指令会分别将当前release/0.1.0分支合并到master分支和develop分支, 同时给master的commit打上'0.1.0'的版本标签最后删除release的分支.
+
+到这里本地的发布工作算是完成了, 需要push到主仓库中:
+
+```sh
+git pull origin
+git push origin master
+git push origin develop
+git push --tags
+```
+
+## 2.7 hotfix
+
+如果release的版本出现了问题, 需要修改时候, 应该创建一个特定的hotfix线程, 维护者执行下面命令:
+```sh
+git flow hotfix start missing-link
+```
+ 
+ 这个是从master分支创建出来的, 不是develop分支, 因此不能使用feature或者release分支来代替
+
+ 修改完事后, 需要合并回master分支:
+
+ ```sh
+ git flow hotfix finish missing-link
+ ```
+
+ 这个指令会将hotfix合并到master和Develop分支中, 然后删除分支, 回到develop分支上

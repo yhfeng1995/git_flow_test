@@ -174,7 +174,9 @@ git flow release start 0.1.0
 git flow release finish 0.1.0
 ```
 
-这个指令会分别将当前release/0.1.0分支合并到master分支和develop分支, 同时给master的commit打上'0.1.0'的版本标签最后删除release的分支.
+![](misc/git_flow_realease_finish.png)
+
+这里上次feature finish的时候我忘了commit了, 所以这么多更新...这个指令会分别将当前release/0.1.0分支合并到master分支和develop分支, 同时给master的commit打上'0.1.0'的版本标签最后删除release的分支.
 
 到这里本地的发布工作算是完成了, 需要push到主仓库中:
 
@@ -189,15 +191,17 @@ git push --tags
 
 如果release的版本出现了问题, 需要修改时候, 应该创建一个特定的hotfix线程, 维护者执行下面命令:
 ```sh
-git flow hotfix start missing-link
+git flow hotfix start add_hotfix_image
 ```
+
+![](misc/git_flow_hotfix_start.png)
  
  这个是从master分支创建出来的, 不是develop分支, 因此不能使用feature或者release分支来代替
 
  修改完事后, 需要合并回master分支:
 
  ```sh
- git flow hotfix finish missing-link
+ git flow hotfix finish add_hotfix_image
  ```
 
  这个指令会将hotfix合并到master和Develop分支中, 然后删除分支, 回到develop分支上

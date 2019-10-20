@@ -191,12 +191,12 @@ git push --tags
 
 如果release的版本出现了问题, 需要修改时候, 应该创建一个特定的hotfix线程, 维护者执行下面命令:
 ```sh
-git flow hotfix start add_hotfix_image
+git flow hotfix start 0.1.2
 ```
 
 ![](misc/git_flow_hotfix_start.png)
  
- 这个是从master分支创建出来的, 不是develop分支, 因此不能使用feature或者release分支来代替
+ 这个是从master分支创建出来的, 不是develop分支, 因此不能使用feature或者release分支来代替, 并且注意hotfix会更新tag, 所以branch的名字最好和版本号统一起来.
 
  修改完事后, 需要合并回master分支:
 

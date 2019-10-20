@@ -8,7 +8,10 @@ git是大家比较熟悉的版本控制工具, 但是至少我很长一段时间
 
 ## 0.2 更新记录
 
-- 0.1.0 (2019/10/20): 创建readme
+- 0.1.3 (2019/10/20): 添加hotfix end图像, 添加工作流程的规定
+- 0.1.2 (2019/10/20): hotfix start的tag不对, 修改
+- 0.1.1 (2019/10/20): 添加release end和hotfix start图片
+- 0.1.0 (2019/10/20): 更新readme基本内容
 
 # 1. git flow 定义
 
@@ -204,4 +207,18 @@ git flow hotfix start 0.1.2
  git flow hotfix finish add_hotfix_image
  ```
 
+ ![](misc/git_flow_hotfix_finish.png)
+
  这个指令会将hotfix合并到master和Develop分支中, 然后删除分支, 回到develop分支上
+
+ # 3. 工作流程确定
+
+ 因为我也没有做过版本控制的工作, 下面的工作流程不一定准确, 随时会修改, 大家有哪里感觉不合适的地方一起讨论:
+
+ 1. 项目组成员fork项目仓库到自己github下, git clone回本地, 保持仓库同步主仓库
+
+ 2. 开发新功能时候, 从Develop分支创建新的feature分支进行开发, 确定开发完成后, push到自己仓库, 向主仓库, 或者子项目负责人的仓库**develop分支**pull request, 确认代码无误后再merge
+
+ 3. 当一个完整的功能实现, 程序是稳定的之后, 需要在master分支release一个版本, 版本号的话使用: x.x.x, 第一位是大版本, 比如中期检查/期末验收, 第二位是每个功能更新的版本, 每次release更新这个版本号, 第三位是hotfix的版本号, 一次hotfix更新一次, 注意master和develop都要更新
+
+ 4. 主仓库一次更新后所有成员从上游主仓库merge代码, 再继续开发
